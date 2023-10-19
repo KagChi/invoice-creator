@@ -5,8 +5,14 @@ go 1.20
 require (
 	github.com/fogleman/gg v1.3.0
 	github.com/gofiber/fiber/v2 v2.50.0
+	github.com/gofiber/template/html/v2 v2.0.5
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0
 	golang.org/x/image v0.0.0-20200119044424-58c23975cae1
+)
+
+require (
+	github.com/gofiber/template v1.8.2 // indirect
+	github.com/gofiber/utils v1.1.0 // indirect
 )
 
 require (

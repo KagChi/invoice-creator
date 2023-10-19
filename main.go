@@ -13,6 +13,7 @@ import (
 	"golang.org/x/image/font/gofont/goregular"
 	"golang.org/x/text/language"
 	"golang.org/x/text/message"
+	"github.com/gofiber/template/html/v2"
 )
 
 const (
@@ -51,11 +52,21 @@ func formatNumberToLocaleString(num int, locale string) string {
 }
 
 func main() {
-	app := fiber.New()
+	engine := html.New("./views", ".html")
+
+	app := fiber.New(fiber.Config{
+		Views: engine,
+	})
 
 	app.Use(logger.New(logger.Config{
 		Format: "[${ip}]:${port} [${latency}] ${status} - ${method} ${path}\n",
 	}))
+
+	app.Get("/", func(c *fiber.Ctx) error {
+        return c.Render("home", fiber.Map{
+            "Title": "Hello, World!",
+        })
+    })
 
 	app.Post("/", func(c *fiber.Ctx) error {
 		b := new(structs.Payload)
